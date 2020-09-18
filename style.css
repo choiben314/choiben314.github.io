@@ -61,6 +61,17 @@ body {
 .paper-authors {
 	font-style: italic;
 }
+
+.other-image {
+	width: 150px;
+}
+.other-title {
+	font-weight: bold;
+}
+.other-authors {
+	font-style: italic;
+}
+
 .img-fluid {
 	width: 180px;
 	margin-bottom: 10px;
