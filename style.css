@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 body {
-	font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-family: "Ubuntu", Roboto, Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	background-color: #FFFFFF;
 	color: #4F6071;
@@ -9,6 +11,11 @@ body {
 	padding-right: 20px;
 	padding-bottom: 100px;
 }
+
+#header-text-name {
+	font-family: 'Libre Barcode 39 Text', sans-serif;
+}
+
 #header {
 	/* background-color: #f4f4f4; */
 	background-color: #FFFFFF;
