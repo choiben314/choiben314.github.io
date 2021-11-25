@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 body {
-	font-family: "Ubuntu", Roboto, Helvetica, Arial, sans-serif;
+	font-family: "Outfit", Roboto, Helvetica, Arial, sans-serif;
 	font-size: 16px;
-	background-color: #FFFFFF;
-	color: #4F6071;
+	background-color: #EEE9CC;
+	color: #000000;
 	max-width: 800px;
 	margin: auto;
 	padding-left: 20px;
@@ -18,13 +18,13 @@ body {
 
 #header {
 	/* background-color: #f4f4f4; */
-	background-color: #FFFFFF;
+	background-color: #EEE9CC;
 	padding-top: 40px;
 	display:inline-block;
 	}
 	
 #portrait {
-	border: 3px solid white;
+	/*border: 3px solid white;*/
 	width: 30%;
 	margin-bottom: 40px;
 }
@@ -79,6 +79,11 @@ body {
 	font-style: italic;
 }
 
+img {
+	border-radius:  12%;
+	box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
 .img-fluid {
 	width: 180px;
 	margin-bottom: 10px;
@@ -86,4 +91,13 @@ body {
 }
 .col {
 	padding-top: 5px;
+}
+
+a:hover {
+	font-weight:  bold;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
 }
