@@ -323,8 +323,6 @@
           12‑byte groups: <em>[packet_id, word_prev, word_curr]</em>, repeated
           to fill UDP payloads.
         </p>
-        <div class="two-col">
-          <div>
             <pre><code class="language-python"># fpga/pdm.py — PDM capture into a 32-bit stream
 class PDM(Module):
     def __init__(self, clk_pad, data):
@@ -350,8 +348,6 @@ class PDM(Module):
         self.sync += If((count & 15) == 9, self.source.last.eq(1)).Else(self.source.last.eq(0))
         self.sync += [count.eq(count + 1), If((count & 15) == 15, packet_id.eq(packet_id + 1))]
 </code></pre>
-          </div>
-        </div>
         <p>
           The UDP path is built on
           <a href="https://github.com/enjoy-digital/liteeth">LiteEth</a>. See
