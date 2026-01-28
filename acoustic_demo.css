@@ -47,3 +47,43 @@ html, body {
 .legend-item:last-child { margin-bottom: 0; }
 .legend-dot { width: 6px; height: 6px; border-radius: 50%; }
 .legend-line { width: 12px; height: 2px; border-radius: 1px; }
+
+.info-toggle {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(12, 12, 18, 0.92);
+  backdrop-filter: blur(20px);
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 10;
+}
+.info-toggle:hover { color: white; }
+
+@media (max-width: 600px) {
+  .info-toggle { display: flex; align-items: center; justify-content: center; }
+  .metrics, .position-panel, .legend {
+    display: none;
+    transition: opacity 0.2s;
+  }
+  .metrics.visible, .position-panel.visible, .legend.visible {
+    display: block;
+  }
+  .metrics { top: 50px; right: 12px; }
+  .position-panel { bottom: auto; top: 50px; right: 12px; display: none; }
+  .position-panel.visible { display: block; top: auto; bottom: 70px; }
+  .legend.visible { display: block; }
+  .header { padding: 8px 12px; }
+  .header h1 { font-size: 12px; }
+  .header .sub { font-size: 9px; }
+  .controls { padding: 8px 12px; gap: 10px; }
+  .play-btn { width: 32px; height: 32px; }
+  .scrubber { width: 140px; }
+  .time { font-size: 9px; min-width: 60px; }
+}

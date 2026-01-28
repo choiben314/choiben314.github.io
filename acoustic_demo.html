@@ -10,6 +10,7 @@
 </head>
 <body>
   <div id="canvas-container"></div>
+  <button class="info-toggle" id="info-toggle">ℹ</button>
   <div class="panel header">
     <h1>Acoustic Beamforming</h1>
     <div class="sub">48-Channel MEMS Array</div>
@@ -45,5 +46,12 @@
     <span class="time" id="time-display">0:00.0 / 0:00.0</span>
   </div>
   <script src="acoustic_demo.js"></script>
+  <script>
+    document.getElementById('info-toggle').addEventListener('click', function() {
+      document.querySelector('.metrics').classList.toggle('visible');
+      document.querySelector('.position-panel').classList.toggle('visible');
+      document.querySelector('.legend').classList.toggle('visible');
+    });
+  </script>
 </body>
 </html>
