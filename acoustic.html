@@ -500,6 +500,11 @@ def loss_fn(mic_pos, src_pos, log_c, tdoa, mask, ref_indices):
         </div>
       </section>
 
+      <div class="figure" style="padding: 0; overflow: hidden;">
+        <iframe src="acoustic_demo.html" style="width: 100%; height: 500px; border: none; border-radius: 8px;"></iframe>
+        <small style="display: block; padding: 12px;">Interactive 3D visualization of sound source localization from spiral trajectory capture</small>
+      </div>
+
       <section id="next">
         <div class="stage"><h2>Next Steps</h2></div>
         <p>
@@ -508,20 +513,12 @@ def loss_fn(mic_pos, src_pos, log_c, tdoa, mask, ref_indices):
         </p>
         <ul>
           <li>
-            We can extend our demo to beamform to focus on the sound source
-            using a simple delay and sum beamformer.
-          </li>
-          <li>
             Build a more rigid assembly + FPGA housing to avoid having to
             recalibrate.
           </li>
           <li>
             Move CIC decimation to FPGA and push the limits of number of
             channels we can handle on standard Gigabit Ethernet.
-          </li>
-          <li>
-            Optimize perf to enable live streaming of the beamformed image to a
-            web browser.
           </li>
           <li>
             Adjust TDOA calculation to be pairwise instead of relative to a
