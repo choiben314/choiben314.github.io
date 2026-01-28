@@ -4,199 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Acoustic Imaging</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
-    />
-    <style>
-      :root {
-        --bg: #0b0d11;
-        --card: #12151b;
-        --ink: #e8eef6;
-        --muted: #a7b3c7;
-        --accent: #6aa9ff;
-        --accent-2: #90e0ef;
-        --code-bg: #0f1320;
-        --border: #1f2430;
-      }
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-          Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      }
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .wrap {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 24px;
-      }
-      header {
-        padding: 32px 0 8px;
-      }
-      h1 {
-        font-size: 36px;
-        line-height: 1.2;
-        margin: 0 0 8px;
-        letter-spacing: 0.2px;
-      }
-      h2 {
-        font-size: 24px;
-        margin: 28px 0 12px;
-        line-height: 1.25;
-      }
-      h3 {
-        font-size: 18px;
-        margin: 22px 0 8px;
-        color: var(--accent-2);
-      }
-      p {
-        color: var(--ink);
-        margin: 12px 0;
-      }
-      .muted {
-        color: var(--muted);
-      }
-      .author {
-        font-size: 14px;
-        color: var(--accent);
-      }
-      .lead {
-        font-size: 18px;
-        color: var(--muted);
-      }
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 16px;
-        margin: 20px 0 6px;
-      }
-      .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 16px;
-      }
-      .stage {
-        border-left: 3px solid var(--accent);
-        padding-left: 14px;
-        margin: 28px 0 8px;
-      }
-      .figure {
-        background: var(--card);
-        border: 1px dashed var(--border);
-        border-radius: 12px;
-        padding: 16px;
-        margin: 16px 0;
-        text-align: center;
-        color: var(--muted);
-      }
-      .figure img {
-        max-width: 100%;
-        display: block;
-        margin: 4px auto 8px;
-        border-radius: 8px;
-      }
-      .figure small {
-        color: var(--muted);
-      }
-      .two-col {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 20px;
-      }
-      pre[class*="language-"] {
-        background: var(--code-bg) !important;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        box-shadow: none !important;
-        text-shadow: none !important;
-      }
-      code[class*="language-"] {
-        box-shadow: none !important;
-        text-shadow: none !important;
-      }
-      code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-      }
-      .kbd {
-        display: inline-block;
-        padding: 2px 6px;
-        border: 1px solid var(--border);
-        border-bottom-width: 2px;
-        border-radius: 6px;
-        background: #0b0f1a;
-        color: var(--ink);
-        font-family: inherit;
-        font-size: 0.9em;
-      }
-      .toc {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 14px;
-      }
-      .toc a {
-        color: var(--muted);
-      }
-      .meta {
-        display: flex;
-        gap: 12px;
-        align-items: baseline;
-        color: var(--muted);
-        margin-bottom: 12px;
-        font-size: 18px;
-      }
-      .meta .tag {
-        background: #0f1826;
-        border: 1px solid var(--border);
-        padding: 3px 8px;
-        border-radius: 999px;
-        color: var(--accent);
-      }
-      .table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        overflow: hidden;
-      }
-      .table th,
-      .table td {
-        padding: 10px 12px;
-        border-bottom: 1px solid var(--border);
-      }
-      .table th {
-        background: #0e1320;
-        color: var(--muted);
-        font-weight: 600;
-        text-align: left;
-      }
-      .table tr:last-child td {
-        border-bottom: none;
-      }
-      footer {
-        color: var(--muted);
-        padding: 30px 0 60px;
-      }
-      .hr {
-        height: 1px;
-        background: var(--border);
-        border: 0;
-        margin: 24px 0;
-      }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="acoustic.css" />
   </head>
   <body>
     <div class="wrap">
@@ -213,9 +22,8 @@
         </p>
       </header>
 
-      <section class="toc">
+      <nav class="toc">
         <strong>Sections</strong>
-        <div style="height: 8px"></div>
         <a href="#overview">Overview</a> · <a href="#hardware">Hardware</a> ·
         <a href="#fpga">FPGA PDM → UDP</a> ·
         <a href="#capture">Host Capture & Ring</a> ·
@@ -223,7 +31,7 @@
         <a href="#ingest">Python Ingest</a> · <a href="#gcc">GCC‑PHAT</a> ·
         <a href="#opt">3D Optimization</a> ·
         <a href="#next">Next Steps</a>
-      </section>
+      </nav>
 
       <section id="overview">
         <div class="stage"><h2>Overview</h2></div>
@@ -274,27 +82,17 @@
           carrying two microphones: inner (H) and outer (L). The full array
           exposes 24 stereo lines → <strong>48 channels</strong>.
         </p>
-        <div class="cards">
-          <div class="card">
-            <h3>PCB/Layout</h3>
-            <p class="muted">Custom spokes + hub PCBs.</p>
-            <div style="display: flex; gap: 16px; align-items: flex-start">
-              <div class="figure" style="flex: 1">
-                <img
-                  src="img_acoustic/hub.png"
-                  alt="PCB Spoke"
-                  style="width: 100%; max-width: 260px"
-                />
-                <small>Hub</small>
-              </div>
-              <div class="figure" style="flex: 1">
-                <img
-                  src="img_acoustic/spoke.png"
-                  alt="PCB Spoke"
-                  style="width: 100%; max-width: 260px"
-                />
-                <small>and Spoke!</small>
-              </div>
+        <div class="card">
+          <h3>PCB/Layout</h3>
+          <p class="muted">Custom spokes + hub PCBs.</p>
+          <div class="figure-row">
+            <div class="figure">
+              <img src="img_acoustic/hub.png" alt="Hub PCB" />
+              <small>Hub</small>
+            </div>
+            <div class="figure">
+              <img src="img_acoustic/spoke.png" alt="Spoke PCB" />
+              <small>and Spoke!</small>
             </div>
           </div>
         </div>
@@ -323,7 +121,7 @@
           12‑byte groups: <em>[packet_id, word_prev, word_curr]</em>, repeated
           to fill UDP payloads.
         </p>
-            <pre><code class="language-python"># fpga/pdm.py — PDM capture into a 32-bit stream
+        <pre><code class="language-python"># fpga/pdm.py — PDM capture into a 32-bit stream
 class PDM(Module):
     def __init__(self, clk_pad, data):
         self.clk_pad = clk_pad
@@ -489,21 +287,23 @@ def loss_fn(mic_pos, src_pos, log_c, tdoa, mask, ref_indices):
     reg = 5e-3*((mic_pos - mic0)**2).mean() + 2e-3*(mic_pos[:,2]**2).mean()
     return data + reg + 1e-2*jerk_reg(src_pos) + 5e-3*accel_reg(src_pos) + 1e-5*((c-343.0)**2)
 </code></pre>
-        <div class="figure">
-          <img
-            src="img_acoustic/calibration_plot.png"
-            alt="Calibration plot"
-          /><small
-            >Output from moving white noise sound source in a spiral
-            pattern.</small
-          >
+        <div class="tabs">
+          <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="demo">Interactive 3D</button>
+            <button class="tab-btn" data-tab="plot">Static Plot</button>
+          </div>
+          <div class="tab-content">
+            <div class="tab-panel active" id="tab-demo">
+              <iframe src="acoustic_demo.html"></iframe>
+              <small>Sound source localization trajectory capture</small>
+            </div>
+            <div class="tab-panel" id="tab-plot">
+              <img src="img_acoustic/calibration_plot.png" alt="Calibration plot" />
+              <small>Output from moving white noise sound source in a spiral pattern.</small>
+            </div>
+          </div>
         </div>
       </section>
-
-      <div class="figure" style="padding: 0; overflow: hidden;">
-        <iframe src="acoustic_demo.html" style="width: 100%; height: 500px; border: none; border-radius: 8px;"></iframe>
-        <small style="display: block; padding: 12px;">Interactive 3D visualization of sound source localization from spiral trajectory capture</small>
-      </div>
 
       <section id="next">
         <div class="stage"><h2>Next Steps</h2></div>
@@ -533,43 +333,13 @@ def loss_fn(mic_pos, src_pos, log_c, tdoa, mask, ref_indices):
           <strong>Stack</strong>: LiteX/LiteEth, Migen, ECP5, macOS BPF, C11,
           Python/Numpy/PyTorch.
         </p>
-        <div style="margin-top: 18px">
-          <strong>References</strong>:
-          <ul style="color: var(--muted); margin-top: 8px">
-            <li>
-              <a
-                href="https://benwang.dev/2023/02/26/Phased-Array-Microphone.html"
-                target="_blank"
-                rel="noopener"
-                >Acoustic Phased Array Project</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://blog.yosyshq.com/p/colorlight-part-2/"
-                target="_blank"
-                rel="noopener"
-                >Colorlight 5a-75B Board</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://tomverbeure.github.io/2021/01/22/The-Colorlight-i5-as-FPGA-development-board.html"
-                target="_blank"
-                rel="noopener"
-                >Colorlight i5 Board</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://zeromips.org/posts/2022-05-29-5a-75b/"
-                target="_blank"
-                rel="noopener"
-                >74HC245 Bypass</a
-              >
-            </li>
-          </ul>
-        </div>
+        <p><strong>References</strong></p>
+        <ul>
+          <li><a href="https://benwang.dev/2023/02/26/Phased-Array-Microphone.html" target="_blank" rel="noopener">Ben Wang's Version</a></li>
+          <li><a href="https://blog.yosyshq.com/p/colorlight-part-2/" target="_blank" rel="noopener">Colorlight 5a-75B Board</a></li>
+          <li><a href="https://tomverbeure.github.io/2021/01/22/The-Colorlight-i5-as-FPGA-development-board.html" target="_blank" rel="noopener">Colorlight i5 Board</a></li>
+          <li><a href="https://zeromips.org/posts/2022-05-29-5a-75b/" target="_blank" rel="noopener">74HC245 Bypass</a></li>
+        </ul>
       </footer>
     </div>
 
@@ -578,5 +348,16 @@ def loss_fn(mic_pos, src_pos, log_c, tdoa, mask, ref_indices):
       src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"
       data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/"
     ></script>
+    <script>
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.dataset.tab;
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById('tab-' + tab).classList.add('active');
+        });
+      });
+    </script>
   </body>
 </html>
