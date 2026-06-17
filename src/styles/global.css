@@ -13,9 +13,12 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--bg);
+}
+
 body {
   margin: 0;
-  min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--serif);
@@ -506,6 +509,27 @@ figcaption {
 @media (max-width: 720px) {
   body {
     font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    padding: 2rem 1.25rem 1.75rem;
+  }
+
+  h1 {
+    margin-bottom: 0.65rem;
+  }
+
+  .mast {
+    margin-bottom: 0.85rem;
+  }
+
+  p {
+    margin-bottom: 0.9rem;
+  }
+
+  main > p:last-of-type {
+    margin-bottom: 0.35rem;
   }
 
   nav {
