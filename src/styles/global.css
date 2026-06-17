@@ -38,8 +38,14 @@ body {
   max-width: 40rem;
 }
 
-.mast {
-  margin-bottom: var(--gap);
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.home > * {
+  margin: 0;
 }
 
 h1,
@@ -49,7 +55,6 @@ p {
 }
 
 h1 {
-  margin-bottom: var(--gap);
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -67,7 +72,7 @@ h2 {
   color: var(--ink-soft);
   font-family: var(--mono);
   font-size: 0.78rem;
-  line-height: 1.5;
+  line-height: 1.1;
 }
 
 nav {
@@ -84,7 +89,11 @@ nav {
 
 p {
   max-width: 39rem;
-  margin-bottom: var(--gap);
+  margin: 0 0 var(--gap);
+}
+
+.home p {
+  margin: 0;
 }
 
 a {
@@ -514,22 +523,6 @@ figcaption {
 
   .wrap {
     padding: 2rem 1.25rem 1.75rem;
-  }
-
-  h1 {
-    margin-bottom: 0.65rem;
-  }
-
-  .mast {
-    margin-bottom: 0.85rem;
-  }
-
-  p {
-    margin-bottom: 0.9rem;
-  }
-
-  main > p:last-of-type {
-    margin-bottom: 0.35rem;
   }
 
   nav {
