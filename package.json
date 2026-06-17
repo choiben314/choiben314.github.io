@@ -1,0 +1,26 @@
+{
+  "name": "choiben314.github.io",
+  "version": "1.0.0",
+  "description": "Ben Choi's personal website.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choiben314/choiben314.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/choiben314/choiben314.github.io/issues"
+  },
+  "homepage": "https://github.com/choiben314/choiben314.github.io#readme",
+  "dependencies": {
+    "astro": "^6.4.8"
+  }
+}

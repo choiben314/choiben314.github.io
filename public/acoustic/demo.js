@@ -1,7 +1,24 @@
 let trajectory = null;
 
+function tubeFromPoints(points, radius, tubularSegments) {
+  const curve = new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.35);
+  const segments = Math.max(tubularSegments ?? points.length * 4, 48);
+  return new THREE.TubeGeometry(curve, segments, radius, 10, false);
+}
+
+function updateTube(mesh, points, radius, tubularSegments) {
+  if (points.length < 2) {
+    mesh.visible = false;
+    return;
+  }
+
+  mesh.visible = true;
+  mesh.geometry.dispose();
+  mesh.geometry = tubeFromPoints(points, radius, tubularSegments);
+}
+
 async function init() {
-  const res = await fetch("acoustic_trajectory.json");
+  const res = await fetch("/acoustic/trajectory.json");
   trajectory = await res.json();
   setupScene();
 }
@@ -9,7 +26,7 @@ async function init() {
 function setupScene() {
   const container = document.getElementById("canvas-container");
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x08080c);
+  scene.background = new THREE.Color(0x315c48);
 
   const camera = new THREE.PerspectiveCamera(
     45,
@@ -31,35 +48,35 @@ function setupScene() {
   controls.minDistance = 0.3;
   controls.maxDistance = 3;
 
-  scene.add(new THREE.AmbientLight(0x404050, 0.6));
-  const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  scene.add(new THREE.AmbientLight(0x4a6358, 0.65));
+  const keyLight = new THREE.DirectionalLight(0xf7f1e6, 0.75);
   keyLight.position.set(2, 3, 2);
   scene.add(keyLight);
-  const fillLight = new THREE.DirectionalLight(0x8b5cf6, 0.3);
+  const fillLight = new THREE.DirectionalLight(0xd7ccbd, 0.35);
   fillLight.position.set(-2, 1, -1);
   scene.add(fillLight);
 
-  const grid = new THREE.GridHelper(0.6, 12, 0x1a1a24, 0x12121a);
+  const grid = new THREE.GridHelper(0.6, 12, 0x4a7562, 0x2a5040);
   grid.rotation.x = Math.PI / 2;
   grid.position.z = 0.001;
   scene.add(grid);
 
   const planeGeo = new THREE.CircleGeometry(0.28, 64);
   const planeMat = new THREE.MeshBasicMaterial({
-    color: 0x0f0f14,
+    color: 0x2a5040,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.55,
   });
   scene.add(new THREE.Mesh(planeGeo, planeMat));
 
   // Microphones
   const micGeo = new THREE.SphereGeometry(0.006, 16, 16);
   const micMat = new THREE.MeshStandardMaterial({
-    color: 0x22d3ee,
-    emissive: 0x22d3ee,
-    emissiveIntensity: 0.3,
-    metalness: 0.4,
-    roughness: 0.6,
+    color: 0xfff7df,
+    emissive: 0xf7f1e6,
+    emissiveIntensity: 0.35,
+    metalness: 0.3,
+    roughness: 0.55,
   });
   trajectory.mic_positions.forEach((pos) => {
     const mesh = new THREE.Mesh(micGeo, micMat);
@@ -67,28 +84,39 @@ function setupScene() {
     scene.add(mesh);
   });
 
-  // Path
+  // Full trajectory path
   const pathPoints = trajectory.trajectory.positions.map(
     (p) => new THREE.Vector3(p[0], p[1], p[2]),
   );
-  const pathGeo = new THREE.BufferGeometry().setFromPoints(pathPoints);
-  scene.add(
-    new THREE.Line(
-      pathGeo,
-      new THREE.LineBasicMaterial({
-        color: 0x2a2a35,
-        transparent: true,
-        opacity: 0.4,
-      }),
-    ),
+  const pathTube = new THREE.Mesh(
+    tubeFromPoints(pathPoints, 0.0035, pathPoints.length * 3),
+    new THREE.MeshBasicMaterial({
+      color: 0xd7ccbd,
+      transparent: true,
+      opacity: 0.65,
+    }),
   );
+  scene.add(pathTube);
+
+  // Playback progress along the trajectory
+  const progressTube = new THREE.Mesh(
+    new THREE.BufferGeometry(),
+    new THREE.MeshBasicMaterial({
+      color: 0xe8c574,
+      transparent: true,
+      opacity: 0.95,
+      depthWrite: false,
+    }),
+  );
+  progressTube.visible = false;
+  scene.add(progressTube);
 
   // Source
   const srcGeo = new THREE.SphereGeometry(0.018, 32, 32);
   const srcMat = new THREE.MeshStandardMaterial({
-    color: 0xa78bfa,
-    emissive: 0x8b5cf6,
-    emissiveIntensity: 0.6,
+    color: 0xe8c574,
+    emissive: 0xc9943a,
+    emissiveIntensity: 0.65,
     metalness: 0.2,
     roughness: 0.4,
   });
@@ -102,8 +130,8 @@ function setupScene() {
   const coneGeo = new THREE.ConeGeometry(coneRadius, coneHeight, 48, 1, true);
   const coneMat = new THREE.ShaderMaterial({
     uniforms: {
-      color1: { value: new THREE.Color(0x8b5cf6) },
-      color2: { value: new THREE.Color(0x22d3ee) },
+      color1: { value: new THREE.Color(0xe8c574) },
+      color2: { value: new THREE.Color(0xc9943a) },
     },
     vertexShader: `varying float vHeight; varying float vRadius; void main() { vHeight = (-position.y / ${coneHeight.toFixed(2)}) + 0.5; vRadius = length(position.xz) / ${coneRadius.toFixed(4)}; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
     fragmentShader: `uniform vec3 color1; uniform vec3 color2; varying float vHeight; varying float vRadius; void main() { vec3 color = mix(color1, color2, vHeight * 0.5); float radialFade = 1.0 - smoothstep(0.0, 1.0, vRadius); float lengthFade = 1.0 - vHeight * 0.7; float alpha = 0.5 * radialFade * lengthFade; gl_FragColor = vec4(color, alpha); }`,
@@ -115,29 +143,19 @@ function setupScene() {
   const beamCone = new THREE.Mesh(coneGeo, coneMat);
   scene.add(beamCone);
 
-  const beamGlow = new THREE.Line(
+  const beamGlow = new THREE.Mesh(
     new THREE.BufferGeometry(),
-    new THREE.LineBasicMaterial({
-      color: 0xa78bfa,
+    new THREE.MeshBasicMaterial({
+      color: 0xe8c574,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.55,
+      depthWrite: false,
     }),
   );
+  beamGlow.visible = false;
   scene.add(beamGlow);
 
-  // Trail
-  const trailLine = new THREE.Line(
-    new THREE.BufferGeometry(),
-    new THREE.LineBasicMaterial({
-      color: 0xa78bfa,
-      transparent: true,
-      opacity: 0.6,
-    }),
-  );
-  scene.add(trailLine);
-
   // State
-  let trailPoints = [];
   let isPlaying = false,
     animationTime = 0,
     lastTimestamp = 0;
@@ -192,16 +210,26 @@ function setupScene() {
         dir.y * distance * 0.5,
         dir.z * distance * 0.5,
       );
-      beamGlow.geometry.setFromPoints([
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(x, y, z),
-      ]);
+      beamGlow.geometry.dispose();
+      updateTube(
+        beamGlow,
+        [new THREE.Vector3(0, 0, 0), new THREE.Vector3(x, y, z)],
+        0.0018,
+        16,
+      );
+    } else {
+      beamGlow.visible = false;
     }
 
-    // Trail
-    trailPoints.push(new THREE.Vector3(x, y, z));
-    if (trailPoints.length > 40) trailPoints.shift();
-    trailLine.geometry.setFromPoints(trailPoints);
+    const progressPoints = positions
+      .slice(0, frame + 1)
+      .map((p) => new THREE.Vector3(p[0], p[1], p[2]));
+    const currentPoint = new THREE.Vector3(x, y, z);
+    const lastPoint = progressPoints[progressPoints.length - 1];
+    if (!lastPoint || lastPoint.distanceTo(currentPoint) > 0.0001) {
+      progressPoints.push(currentPoint);
+    }
+    updateTube(progressTube, progressPoints, 0.0055, progressPoints.length * 4);
 
     // UI
     document.getElementById("pos-x").textContent = `x: ${x.toFixed(3)}`;
@@ -229,7 +257,6 @@ function setupScene() {
       animationTime += delta;
       if (animationTime >= trajectory.duration) {
         animationTime = 0;
-        trailPoints = [];
       }
       updateSource();
       updateUI();
@@ -253,7 +280,6 @@ function setupScene() {
       Math.min(1, (e.clientX - rect.left) / rect.width),
     );
     animationTime = ratio * trajectory.duration;
-    trailPoints = [];
     updateSource();
     updateUI();
   });
